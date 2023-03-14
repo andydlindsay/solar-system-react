@@ -1,5 +1,5 @@
 const MASS_SIZE = 20; // ratio of pixel size to mass
-const UNIVERSE_SIZE = 600; // in pixels
+const UNIVERSE_SIZE = 870; // in pixels
 
 const getCSSCoords = (planet) => {
   // CSS displays the object from the upper left corner of the object
