@@ -6,8 +6,8 @@ const SolarSystem = (props) => {
   });
 
   const sun = {
-    x: 0,
-    y: 0,
+    x: 10,
+    y: -40,
     mass: 2.5,
     color: 'yellow'
   };
