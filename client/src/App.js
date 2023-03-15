@@ -28,13 +28,20 @@ const calcNewPosition = (planet) => {
   // deltaV = a * deltaT
   const deltaT = 1;
 
+  const newX = planet.x + (planet.Vx + Ax * deltaT);
+  const newY = planet.y + (planet.Vy + Ay * deltaT);
+
   // copy the planet
   const newPlanet = {
     ...planet,
     Vx: planet.Vx + Ax * deltaT,
     Vy: planet.Vy + Ay * deltaT,
-    x: planet.x + (planet.Vx + Ax * deltaT),
-    y: planet.y + (planet.Vy + Ay * deltaT)
+    x: newX,
+    y: newY,
+    trails: [
+      ...planet.trails,
+      { x: newX, y: newY, mass: 1 }
+    ]
   };
 
   return newPlanet;
@@ -45,6 +52,17 @@ const App = () => {
   const [delay, setDelay] = useState(50);
   const [planets, setPlanets] = useState(planetData);
   const [intervalRef, setIntervalRef] = useState(null);
+
+  const clearTracks = () => {
+    setPlanets((prev) => {
+      return prev.map((prevPlanet) => {
+        return {
+          ...prevPlanet,
+          trails: []
+        }
+      });
+    });
+  };
 
   useEffect(() => {
     if (!isRunning) {
@@ -78,6 +96,7 @@ const App = () => {
         onStartClick={onStartClick}
         delay={delay}
         onDelayChange={(event) => setDelay(event.target.value)}
+        clearTracks={clearTracks}
       />
     </div>
   );

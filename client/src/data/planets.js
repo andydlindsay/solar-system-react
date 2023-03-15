@@ -9,6 +9,7 @@ const planets = [
     color: "blue",
     planet: true,
     trail: true,
+    trails: []
   },
   {
     name: "Mars",
@@ -20,6 +21,7 @@ const planets = [
     color: "red",
     planet: true,
     trail: true,
+    trails: []
   },
   {
     name: "Other",
@@ -31,6 +33,7 @@ const planets = [
     color: "green",
     planet: true,
     trail: true,
+    trails: []
   }
 ];
 
