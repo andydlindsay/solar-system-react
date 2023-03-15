@@ -1,14 +1,10 @@
-import {useMemo} from 'react';
-
 import getTrailCoords from "../helpers/getTrailCoords";
 
 const Trail = (props) => {
   const className = "trail";
 
-  const [left, top] = useMemo(() => getTrailCoords(props.trail), [props.trail.x]);
+  const [left, top] = getTrailCoords(props.trail);
   const diameter = '1px';
-
-  // console.log('trail:', Math.round(props.trail.y), Math.round(top));
 
   const style = {
     top,
