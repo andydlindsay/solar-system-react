@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { MAX_TRAIL_LENGTH } from './data/constants';
 
 import Header from "./components/Header";
 import SolarSystem from "./components/SolarSystem";
@@ -31,6 +32,11 @@ const calcNewPosition = (planet) => {
   const newX = planet.x + (planet.Vx + Ax * deltaT);
   const newY = planet.y + (planet.Vy + Ay * deltaT);
 
+  let newTrails = [...planet.trails];
+  if (newTrails.length === MAX_TRAIL_LENGTH) {
+    newTrails.shift();
+  }
+
   // copy the planet
   const newPlanet = {
     ...planet,
@@ -39,7 +45,7 @@ const calcNewPosition = (planet) => {
     x: newX,
     y: newY,
     trails: [
-      ...planet.trails,
+      ...newTrails,
       { x: newX, y: newY, mass: 1 }
     ]
   };
