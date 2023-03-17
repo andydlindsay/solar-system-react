@@ -9,9 +9,7 @@ const Controls = (props) => {
         <button onClick={props.onStartClick}>Start/Stop</button>
         <span>{props.isRunning ? 'Running' : 'Paused'}</span>
       </div>
-      <button
-        onClick={props.clearTracks}
-      >Clear Tracks</button>
+      <button onClick={props.clearTracks}>Clear Tracks</button>
       <div className="delay-slider">
         <input 
           type="range" 

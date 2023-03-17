@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import { MAX_TRAIL_LENGTH } from './data/constants';
+import { MAX_TRAIL_LENGTH } from "./data/constants";
 
 import Header from "./components/Header";
 import SolarSystem from "./components/SolarSystem";
 import Controls from "./components/Controls";
+import PlanetList from "./components/PlanetList";
 
 import "./App.css";
 
@@ -21,7 +22,7 @@ const calcGravity = (planet) => {
 
 const calcNewPosition = (planet) => {
   const [Fx, Fy] = calcGravity(planet);
-  
+
   // F=MA therefore...
   const Ax = Fx / planet.mass;
   const Ay = Fy / planet.mass;
@@ -44,14 +45,12 @@ const calcNewPosition = (planet) => {
     Vy: planet.Vy + Ay * deltaT,
     x: newX,
     y: newY,
-    trails: [
-      ...newTrails,
-      { x: newX, y: newY, mass: 1 }
-    ]
+    trails: [...newTrails, { x: newX, y: newY, mass: 1 }],
   };
 
   return newPlanet;
 };
+
 
 const App = () => {
   const [isRunning, setIsRunning] = useState(false);
@@ -59,13 +58,26 @@ const App = () => {
   const [planets, setPlanets] = useState(planetData);
   const [intervalRef, setIntervalRef] = useState(null);
 
+  const setPlanet = (id, newPlanet) => {
+    console.log('id', id);
+    console.log('newPlanet', newPlanet);
+    setPlanets((prev) => {
+      return prev.map((planet) => {
+        if (planet.id === id) {
+          return newPlanet;
+        }
+        return planet;
+      });
+    });
+  };
+  
   const clearTracks = () => {
     setPlanets((prev) => {
       return prev.map((prevPlanet) => {
         return {
           ...prevPlanet,
-          trails: []
-        }
+          trails: [],
+        };
       });
     });
   };
@@ -96,14 +108,19 @@ const App = () => {
   return (
     <div className="App">
       <Header />
-      <SolarSystem planets={planets} />
-      <Controls
-        isRunning={isRunning}
-        onStartClick={onStartClick}
-        delay={delay}
-        onDelayChange={(event) => setDelay(event.target.value)}
-        clearTracks={clearTracks}
-      />
+      <div className="main">
+        <div>
+          <SolarSystem planets={planets} />
+          <Controls
+            isRunning={isRunning}
+            onStartClick={onStartClick}
+            delay={delay}
+            onDelayChange={(event) => setDelay(event.target.value)}
+            clearTracks={clearTracks}
+          />
+        </div>
+        <PlanetList setPlanet={setPlanet} planets={planets}/>
+      </div>
     </div>
   );
 };

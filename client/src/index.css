@@ -13,8 +13,7 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
 .solar-system {
@@ -23,6 +22,7 @@ code {
   width: 900px;
   margin: 0 auto;
   position: relative;
+  overflow: hidden;
 }
 
 .planet {
@@ -53,7 +53,7 @@ code {
 .controls {
   font-size: 1.5rem;
   margin: 10px auto;
-  width: 60vw;
+  width: 900px;
   display: flex;
   justify-content: space-between;
 }
@@ -77,4 +77,21 @@ code {
 
 .yellow {
   background-color: yellow;
+}
+
+.white {
+  background-color: white;
+}
+
+.orange {
+  background-color: orange;
+}
+
+.purple {
+  background-color: purple;
+}
+
+.main {
+  display: flex;
+  justify-content: space-around;
 }

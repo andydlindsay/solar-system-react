@@ -1,5 +1,6 @@
 const planets = [
   {
+    id: 'abc',
     name: "Earth",
     x: 100,
     y: 100,
@@ -12,6 +13,7 @@ const planets = [
     trails: []
   },
   {
+    id: 'def',
     name: "Mars",
     x: 180,
     y: 180,
@@ -24,6 +26,7 @@ const planets = [
     trails: []
   },
   {
+    id: 'ghi',
     name: "Other",
     x: 220,
     y: 220,

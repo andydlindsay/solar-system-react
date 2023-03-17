@@ -3,7 +3,7 @@ import Trail from './Trail';
 
 const SolarSystem = (props) => {
   const planetMap = props.planets.map((planet) => {
-    return <Planet key={planet.name} planet={planet} />;
+    return <Planet key={planet.id} planet={planet} />;
   });
 
   let trails = [];
@@ -18,7 +18,7 @@ const SolarSystem = (props) => {
     x: 0,
     y: 0,
     mass: 2.5,
-    color: 'yellow'
+    color: 'white'
   };
   
   return (
