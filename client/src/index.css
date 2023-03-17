@@ -95,3 +95,14 @@ code {
   display: flex;
   justify-content: space-around;
 }
+
+.planet-list {
+  max-width: 40vw;
+  min-width: 20vw;
+  border: 2px solid black;
+  border-radius: 15px;
+}
+
+hr {
+  border-color: grey;
+}

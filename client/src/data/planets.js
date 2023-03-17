@@ -5,12 +5,13 @@ const planets = [
     x: 100,
     y: 100,
     Vx: -4,
-    Vy: 4.4,
+    Vy: 4,
     mass: 0.8,
     color: "blue",
     planet: true,
     trail: true,
-    trails: []
+    trails: [],
+    edit: false
   },
   {
     id: 'def',
@@ -18,12 +19,13 @@ const planets = [
     x: 180,
     y: 180,
     Vx: -4,
-    Vy: 4.4,
+    Vy: 4,
     mass: 1,
     color: "red",
     planet: true,
     trail: true,
-    trails: []
+    trails: [],
+    edit: false
   },
   {
     id: 'ghi',
@@ -31,12 +33,13 @@ const planets = [
     x: 220,
     y: 220,
     Vx: -4,
-    Vy: 4.4,
+    Vy: 4,
     mass: 1.2,
     color: "green",
     planet: true,
     trail: true,
-    trails: []
+    trails: [],
+    edit: false
   }
 ];
 

@@ -9,6 +9,7 @@ import PlanetList from "./components/PlanetList";
 import "./App.css";
 
 import planetData from "./data/planets";
+import ogPlanetsData from './data/planets';
 
 const calcGravity = (planet) => {
   const Msun = 1000; // mass of the Sun
@@ -51,16 +52,25 @@ const calcNewPosition = (planet) => {
   return newPlanet;
 };
 
-
 const App = () => {
   const [isRunning, setIsRunning] = useState(false);
   const [delay, setDelay] = useState(50);
   const [planets, setPlanets] = useState(planetData);
   const [intervalRef, setIntervalRef] = useState(null);
+  const [ogPlanets, setOgPlanets] = useState(ogPlanetsData);
 
   const setPlanet = (id, newPlanet) => {
-    console.log('id', id);
-    console.log('newPlanet', newPlanet);
+    // check if a planet with that id exists
+    const planetIds = planets.map((planet) => planet.id);
+    if (!planetIds.includes(id)) {
+      return setPlanets((prev) => {
+        return [
+          ...prev,
+          newPlanet
+        ];
+      });
+    }
+
     setPlanets((prev) => {
       return prev.map((planet) => {
         if (planet.id === id) {
@@ -71,7 +81,7 @@ const App = () => {
     });
   };
   
-  const clearTracks = () => {
+  const onClearClick = () => {
     setPlanets((prev) => {
       return prev.map((prevPlanet) => {
         return {
@@ -105,6 +115,10 @@ const App = () => {
     setIsRunning(!isRunning);
   };
 
+  const onResetClick = () => {
+    setPlanets(ogPlanets);
+  };
+
   return (
     <div className="App">
       <Header />
@@ -114,9 +128,10 @@ const App = () => {
           <Controls
             isRunning={isRunning}
             onStartClick={onStartClick}
+            onResetClick={onResetClick}
+            onClearClick={onClearClick}
             delay={delay}
             onDelayChange={(event) => setDelay(event.target.value)}
-            clearTracks={clearTracks}
           />
         </div>
         <PlanetList setPlanet={setPlanet} planets={planets}/>

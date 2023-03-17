@@ -11,19 +11,23 @@ const options = [
 ];
 
 const PlanetListItemForm = (props) => {
-  const [name, setName] = useState(props.planet.name || 'unknown');
-  const [mass, setMass] = useState(props.planet.mass || 1);
-  const [color, setColor] = useState(props.planet.color || 'yellow');
-  const [x, setX] = useState(Math.floor(props.planet.x) || 200);
-  const [y, setY] = useState(Math.floor(props.planet.y) || 200);
-  const [Vx, setVx] = useState(Math.floor(props.planet.Vx) || 200);
-  const [Vy, setVy] = useState(Math.floor(props.planet.Vy) || 200);
+  const [name, setName] = useState(props.planet?.name || 'new planet');
+  const [mass, setMass] = useState(props.planet?.mass || 0.8);
+  const [color, setColor] = useState(props.planet?.color || 'purple');
+  const [x, setX] = useState(Math.floor(props.planet?.x) || 200);
+  const [y, setY] = useState(Math.floor(props.planet?.y) || 200);
+  const [Vx, setVx] = useState(Math.floor(props.planet?.Vx) || -4);
+  const [Vy, setVy] = useState(Math.floor(props.planet?.Vy) || 4);
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    props.setPlanet(props.planet.id, {
+    const planetId = props.planet?.id || Math.random().toString(36).substring(2, 5);
+
+    props.setPlanet(planetId, {
       ...props.planet,
+      id: planetId,
+      trails: props.planet?.trails || [],
       name,
       mass: +mass,
       color,
@@ -88,7 +92,7 @@ const PlanetListItemForm = (props) => {
       />
       <br/>
       <button type="submit">Save!</button>
-      <button>Cancel</button>
+      <button onClick={props.onCancel}>Cancel</button>
     </form>
   );
 };
